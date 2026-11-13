@@ -1,0 +1,26 @@
+flowchart LR
+  1["QueryRouter"]
+  2["PermissionFilter"]
+  3["SecureRetriever"]
+  4["Vector Database"]
+  5["ResultAssembler"]
+  1 -->|Route Query| 2
+  2 -->|Apply Permissions| 3
+  3 -->|Retrieve Documents| 4
+  4 -->|Return Filtered Results| 3
+  3 -->|Assemble Results| 5
+
+flowchart TB
+  subgraph happy [Happy path]
+    h_1["QueryRouter"]
+    h_2["PermissionFilter"]
+    h_3["SecureRetriever"]
+    h_4["Vector Database"]
+    h_5["ResultAssembler"]
+    h_1 --> h_2
+    h_2 --> h_3
+    h_3 --> h_4
+    h_4 --> h_5
+  end
+  fail["Failure / abstain"]
+  h_5 -.-> fail

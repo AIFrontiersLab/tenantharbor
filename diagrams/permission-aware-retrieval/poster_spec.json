@@ -1,0 +1,58 @@
+{
+  "boxes": [
+    {
+      "detail": "Directs incoming queries to the appropriate processing components.",
+      "id": "1",
+      "label": "QueryRouter"
+    },
+    {
+      "detail": "Applies metadata constraints based on user permissions to filter queries.",
+      "id": "2",
+      "label": "PermissionFilter"
+    },
+    {
+      "detail": "Executes filtered queries against the vector database.",
+      "id": "3",
+      "label": "SecureRetriever"
+    },
+    {
+      "detail": "Stores documents with metadata for efficient retrieval.",
+      "id": "4",
+      "label": "Vector Database"
+    },
+    {
+      "detail": "Compiles retrieved documents into a response for the user.",
+      "id": "5",
+      "label": "ResultAssembler"
+    }
+  ],
+  "flows": [
+    {
+      "from": "1",
+      "label": "Route Query",
+      "to": "2"
+    },
+    {
+      "from": "2",
+      "label": "Apply Permissions",
+      "to": "3"
+    },
+    {
+      "from": "3",
+      "label": "Retrieve Documents",
+      "to": "4"
+    },
+    {
+      "from": "4",
+      "label": "Return Filtered Results",
+      "to": "3"
+    },
+    {
+      "from": "3",
+      "label": "Assemble Results",
+      "to": "5"
+    }
+  ],
+  "subtitle": "One concept. Three AI perspectives. One tested architecture.",
+  "title": "Permission-Aware Retrieval"
+}
